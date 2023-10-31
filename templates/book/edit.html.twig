@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Modifier un livre</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.author) }}
+    {{ form_row(form.category) }}
+    {{ form_row(form.published) }}
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    {{ form_end(form) }}
+{% endblock %}

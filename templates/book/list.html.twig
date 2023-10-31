@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste des livres publiés</h1>
+    
+    {% if books is empty %}
+        <p>Aucun livre trouvé.</p>
+    {% else %}
+        <ul>
+            {% for book in books %}
+                <li>{{ book.title }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
