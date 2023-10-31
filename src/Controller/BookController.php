@@ -19,9 +19,9 @@ class BookController extends AbstractController
         $form->handleRequest($request);
     
         if ($form->isSubmitted() && $form->isValid()) {
-            $book->setPublished(true); // initialisation de "published" à True
+            $book->setPublished(true); 
             $author = $book->getAuthor();
-            $author->setNbBooks($author->getNbBooks() + 1); // incrémentation de "nb_books" de l'auteur
+            $author->setNbBooks($author->getNbBooks() + 1); 
             $entityManager = $managerRegistry->getManager();
             $entityManager->persist($book);
             $entityManager->flush();
@@ -49,7 +49,7 @@ public function editBook(Request $request, Book $book, ManagerRegistry $entityMa
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
-        // Traitement de la modification du livre
+        
         $entityManager->getManager()->flush();
 
         return $this->redirectToRoute('list_books');
@@ -66,8 +66,7 @@ public function deleteBook(Book $book, ManagerRegistry $entityManager): Response
     $entityManager->remove($book);
     $entityManager->flush();
 
-    // Vous pouvez également vérifier si l'auteur n'a plus de livres et le supprimer ici
-    // Supprimer l'auteur si son "nb_books" est égal à zéro
+   
     $author = $book->getAuthor();
     if ($author && $author->getNbBooks() === 0) {
         $entityManager->remove($author);
